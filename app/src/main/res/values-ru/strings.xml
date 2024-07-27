@@ -3,9 +3,7 @@
     <string name="app_name">NMedia</string>
     <string name="nmedia">НМедиа!</string>
     <string name="description_post_menu">Меню</string>
-    <string name="description_post_menu">М</string>
     <string name="description_post_author_avatar">Аватар автора поста</string>
-    <string name="description_post_author_avatar">А</string>
     <string name="like">Лайк на пост</string>
     <string name="repost">Репосты поста</string>
     <string name="view">Количество просмотров</string>
