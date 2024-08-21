@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() {
             like?.setOnClickListener {
                 Log.d("stuff", "like")
                 post.likedByMe = !post.likedByMe
-                if (post.likedByMe) post.likes++ else post.likes--
-                like.setImageResource(if (post.likedByMe) R.drawable.ic_liked else R.drawable.ic_like_icon)
-                numLikes?.text = formatNumber(post.likes)
+                if (post.likedByMe) post.likes++ else post.likes-- // Увеличение или уменьшение количества лайков
+                like.setImageResource(if (post.likedByMe) R.drawable.ic_liked else R.drawable.ic_like_icon) // Замена иконки
+                numLikes?.text = formatNumber(post.likes) // Обновление числа лайков
             }
 
             repost?.setOnClickListener { // Кнопка репоста
