@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             published = "21 мая в 18:36",
             likedByMe = false,
             repostByMe = false,
-            likes = 1398,
+            likes = 13998,
             reposts = 0
 
         )
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     private fun formatNumber(number: Int): String {
         return when {
             number >= 1_000_000 -> "${number / 1_000_000}.${(number % 1_000_000) / 100_000}M"
+            number >= 10_000 -> "${number / 1_000}K"
             number >= 1_000 -> "${number / 1_000}.${(number % 1_000) / 100}K"
             else -> number.toString()
         }
