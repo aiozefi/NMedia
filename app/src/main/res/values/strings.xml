@@ -6,4 +6,10 @@
     <string name="like">Like post</string>
     <string name="repost">Count of reposts</string>
     <string name="view">Count of views</string>
+    <string name="menu_remove">Remove</string>
+    <string name="post_text">Post Text</string>
+    <string name="menu_edit">Edit</string>
+    <string name="error_empty_content">Content can\'t be empty</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
 </resources>

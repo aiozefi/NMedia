@@ -7,4 +7,10 @@
     <string name="like">Лайк на пост</string>
     <string name="repost">Репосты поста</string>
     <string name="view">Количество просмотров</string>
+    <string name="menu_remove">Удалить</string>
+    <string name="post_text">Текст поста</string>
+    <string name="menu_edit">Изменить</string>
+    <string name="error_empty_content">Пост не может быть пустым</string>
+    <string name="save">Сохранить</string>
+    <string name="close">Закрыть</string>
 </resources>
