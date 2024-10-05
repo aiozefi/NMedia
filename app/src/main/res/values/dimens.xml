@@ -4,4 +4,7 @@
     <dimen name="posts_avatar_size">48dp</dimen>
     <dimen name="icons">36dp</dimen>
     <dimen name="count_spacing">10dp</dimen>
+    <dimen name="checkbox_padding_start">8dp</dimen>
+    <dimen name="icon_button_padding">12dp</dimen>
+    <dimen name="icon_button_min_size">48dp</dimen>
 </resources>

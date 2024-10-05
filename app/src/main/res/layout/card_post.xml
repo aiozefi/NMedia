@@ -13,6 +13,7 @@
         android:layout_height="@dimen/posts_avatar_size"
         android:layout_marginBottom="@dimen/common_spacing"
         android:contentDescription="@string/description_post_author_avatar"
+        android:src="@drawable/netology"
         app:layout_constraintBottom_toBottomOf="@id/barrier"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@id/author"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,7 +55,8 @@
         android:contentDescription="@string/description_post_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_more_vert_24"
+        app:icon="@drawable/ic_more_vert_24"
+        style="@style/Widget.AppTheme.IconButton"
         tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.constraintlayout.widget.Barrier
@@ -84,52 +86,33 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="content" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/like"
-        android:layout_width="@dimen/icons"
-        android:layout_height="@dimen/icons"
-        android:layout_marginTop="@dimen/common_spacing"
-        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="true"
         android:contentDescription="@string/like"
-        app:layout_constraintEnd_toStartOf="@id/num_likes"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrier2"
-        app:srcCompat="@drawable/ic_like_icon" />
+        app:icon="@drawable/ic_like_32"
+        tools:text="@sample/posts.json/data/likes"
+        style="@style/Widget.AppTheme.LikeButton"
+        />
 
-    <TextView
-        android:id="@+id/num_likes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/count_spacing"
-        app:layout_constraintBottom_toBottomOf="@id/like"
-        app:layout_constraintStart_toEndOf="@id/like"
-        app:layout_constraintEnd_toStartOf="@id/repost"
-        app:layout_constraintTop_toTopOf="@id/like"
-        tools:text="@sample/posts.json/data/likes" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/repost"
-        android:layout_width="@dimen/icons"
-        android:layout_height="@dimen/icons"
-        android:layout_marginStart="@dimen/common_spacing"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/repost"
-        app:layout_constraintStart_toEndOf="@id/num_likes"
-        app:layout_constraintEnd_toStartOf="@id/num_reposts"
-        app:layout_constraintBottom_toBottomOf="@+id/num_likes"
-        app:layout_constraintTop_toTopOf="@+id/num_likes"
-        app:srcCompat="@drawable/ic_repost_icon1" />
-
-    <TextView
-        android:id="@+id/num_reposts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/count_spacing"
-        app:layout_constraintBottom_toBottomOf="@id/repost"
-        app:layout_constraintStart_toEndOf="@id/repost"
-        app:layout_constraintTop_toTopOf="@id/repost"
-        tools:text="@sample/posts.json/data/reposts" />
+        android:layout_marginStart="@dimen/common_spacing"
+        android:checkable="true"
+        android:contentDescription="@string/repost"
+        app:layout_constraintStart_toEndOf="@+id/like"
+        app:layout_constraintTop_toBottomOf="@id/barrier2"
+        app:icon="@drawable/ic_repost_icon1"
+        tools:text="@sample/posts.json/data/reposts"
+        style="@style/Widget.AppTheme.IconButton"/>
+
 
     <TextView
         android:id="@+id/num_views"

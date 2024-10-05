@@ -28,6 +28,7 @@ class PostsAdapter(
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = getItem(position)
         holder.bind(post)
+
     }
 }
 
@@ -40,8 +41,10 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            like.setImageResource(
-                if (post.likedByMe) R.drawable.ic_liked else R.drawable.ic_like_icon)
+            like.isChecked = post.likedByMe
+            like.text = formatNumber(post.likes)
+            repost.isChecked = post.repostByMe
+            repost.text = formatNumber(post.reposts)
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.options_post)
@@ -68,9 +71,6 @@ class PostViewHolder(
             repost.setOnClickListener {
                 onInteractionListener.onRepost(post)
             }
-
-            numLikes.text = formatNumber(post.likes)
-            numReposts.text = formatNumber(post.reposts)
         }
     }
 
