@@ -1,8 +1,10 @@
 package ru.netology.nmedia.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.launch
 import androidx.activity.viewModels
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -21,8 +23,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
+
+        val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.changeContent(result)
+            viewModel.save()
+        }
+
         val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onEdit(post: Post) {
+                editPostLauncher.launch(post.content)
                 viewModel.edit(post)
             }
 
@@ -31,7 +41,15 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onRepost(post: Post) {
-                viewModel.repostById(post.id)
+                val intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, post.content)
+                    type = "text/plain"
+                }
+
+                val shareIntent =
+                    Intent.createChooser(intent, getString(R.string.chooser_share_post))
+                startActivity(shareIntent)
             }
 
             override fun onRemove(post: Post) {
@@ -49,62 +67,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Отмена редактирования
-        binding.close.setOnClickListener {
-            binding.editGroup.visibility = View.GONE
-            viewModel.closeEdit()
+        val newPostLauncher = registerForActivityResult(NewPostResultContract()) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.changeContent(result)
+            viewModel.save()
         }
 
-        viewModel.edited.observe(this) { post ->
-            if (post.id == 0L) {
-                return@observe
-            }
-            else {
-                binding.editablePostText.text = post.content // Текст редактируемого поста
-                binding.content.requestFocus()
-            }
 
-        }
-        // Наблюдение за состоянием редактирования
-        viewModel.isEditing.observe(this) { isEditing ->
-            if (isEditing) {
-                binding.editGroup.visibility = View.VISIBLE // Показываем группу
-            } else {
-                binding.editGroup.visibility = View.GONE // Скрываем группу
-            }
+        binding.add.setOnClickListener {
+            newPostLauncher.launch()
         }
 
-        // Наблюдаем за изменениями в редактируемом посте
-        viewModel.edited.observe(this) { post ->
-            if (post.id == 0L) {
-                binding.editablePostText.text = ""
-                binding.content.setText("")
-            } else {
-                binding.editablePostText.text = post.content
-                binding.content.setText(post.content)
-                binding.content.requestFocus()
-            }
-        }
-
-        // Сохранение
-        binding.save.setOnClickListener {
-            with(binding.content) {
-                if (text.isNullOrBlank()) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        context.getString(R.string.error_empty_content),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnClickListener
-                }
-
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-            }
-        }
     }
 }

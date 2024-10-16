@@ -4,6 +4,9 @@
     <string name="nmedia">НМедиа!</string>
     <string name="description_post_menu">Меню</string>
     <string name="description_post_author_avatar">Аватар автора поста</string>
+    <string name="description_post_like">Нравится</string>
+    <string name="description_post_share">Поделиться</string>
+    <string name="description_post_save">Сохранить</string>
     <string name="like">Лайк на пост</string>
     <string name="repost">Репосты поста</string>
     <string name="view">Количество просмотров</string>
@@ -11,6 +14,8 @@
     <string name="post_text">Текст поста</string>
     <string name="menu_edit">Изменить</string>
     <string name="error_empty_content">Пост не может быть пустым</string>
+    <string name="chooser_share_post">Поделиться</string>
+    <string name="add_post">Добавить пост</string>
     <string name="save">Сохранить</string>
     <string name="close">Закрыть</string>
 </resources>
