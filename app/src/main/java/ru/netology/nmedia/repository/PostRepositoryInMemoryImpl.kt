@@ -16,7 +16,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likedByMe = false,
             repostByMe = false,
             likes = 0,
-            reposts = 0
+            reposts = 0,
+            video = "https://youtu.be/YyXJCx0QRCY?si=iuSqcVOuMkyXQqkC"
 
         ),
         Post(

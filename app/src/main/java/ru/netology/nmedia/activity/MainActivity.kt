@@ -55,6 +55,9 @@ class MainActivity : AppCompatActivity() {
             override fun onRemove(post: Post) {
                 viewModel.removeById(post.id)
             }
+
+            override fun onVideoClick(post: Post) {
+            }
         })
 
         binding.list.adapter = adapter

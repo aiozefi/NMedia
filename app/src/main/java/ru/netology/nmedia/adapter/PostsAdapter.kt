@@ -1,6 +1,9 @@
 package ru.netology.nmedia.adapter
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -15,6 +18,7 @@ interface OnInteractionListener {
     fun onRepost(post: Post) {}
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
+    fun onVideoClick(post: Post) {}
 }
 
 class PostsAdapter(
@@ -45,6 +49,21 @@ class PostViewHolder(
             like.text = formatNumber(post.likes)
             repost.isChecked = post.repostByMe
             repost.text = formatNumber(post.reposts)
+            if (post.video != null) {
+                videoBlock.visibility = View.VISIBLE
+                videoBlock.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+                    it.context.startActivity(intent)
+                }
+                playButton.setOnClickListener{
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+                    it.context.startActivity(intent)
+                }
+            } else {
+                videoBlock.visibility = View.GONE
+            }
+
+
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.options_post)
