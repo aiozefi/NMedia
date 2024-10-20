@@ -1,6 +1,7 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -25,7 +26,10 @@ class MainActivity : AppCompatActivity() {
         val viewModel: PostViewModel by viewModels()
 
         val editPostLauncher = registerForActivityResult(EditPostResultContract()) { result ->
-            result ?: return@registerForActivityResult
+            if (result == null) {
+                viewModel.closeEdit()
+                return@registerForActivityResult
+            }
             viewModel.changeContent(result)
             viewModel.save()
         }
@@ -57,6 +61,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onVideoClick(post: Post) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
+                startActivity(intent)
             }
         })
 

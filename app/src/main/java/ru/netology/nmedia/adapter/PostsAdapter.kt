@@ -52,12 +52,10 @@ class PostViewHolder(
             if (post.video != null) {
                 videoBlock.visibility = View.VISIBLE
                 videoBlock.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                    it.context.startActivity(intent)
+                    onInteractionListener.onVideoClick(post)
                 }
-                playButton.setOnClickListener{
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video))
-                    it.context.startActivity(intent)
+                playButton.setOnClickListener {
+                    onInteractionListener.onVideoClick(post)
                 }
             } else {
                 videoBlock.visibility = View.GONE
