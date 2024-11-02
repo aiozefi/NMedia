@@ -28,6 +28,8 @@ class PostRepositoryFileImpl (
             context.openFileInput(filename).bufferedReader().use {
                 posts = gson.fromJson(it, type)
                 data.value = posts
+                nextId = (posts.maxOfOrNull{ it.id } ?: 0) + 1
+
             }
         } else {
             sync()
